@@ -22,6 +22,15 @@ public class Company extends User {
 
     public Company() {}
 
+    public Company(String email, String password, boolean isActive, String companyName, String webSite, Set<Address> addresses, Set<PhoneNumber> phoneNumbers, Set<Product> products) {
+        super(email, password, isActive);
+        this.companyName = companyName;
+        this.webSite = webSite;
+        this.addresses = addresses;
+        this.phoneNumbers = phoneNumbers;
+        this.products = products;
+    }
+
     public Company(String id, String email, String password, boolean isActive, String companyName, String webSite, Set<Address> addresses, Set<PhoneNumber> phoneNumbers, Set<Product> products) {
         super(id, email, password, isActive);
         this.companyName = companyName;

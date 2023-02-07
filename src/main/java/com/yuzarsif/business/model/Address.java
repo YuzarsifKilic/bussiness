@@ -20,6 +20,16 @@ public class Address {
 
     public Address() {}
 
+    public Address(String apartmentNo, String flat, String street, String province, String district, String country, User user) {
+        this.apartmentNo = apartmentNo;
+        this.flat = flat;
+        this.street = street;
+        this.province = province;
+        this.district = district;
+        this.country = country;
+        this.user = user;
+    }
+
     public Address(Long id, String apartmentNo, String flat, String street, String province, String district, String country, User user) {
         this.id = id;
         this.apartmentNo = apartmentNo;

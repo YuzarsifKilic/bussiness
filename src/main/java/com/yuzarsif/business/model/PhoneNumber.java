@@ -18,6 +18,12 @@ public class PhoneNumber {
 
     public PhoneNumber() {}
 
+    public PhoneNumber(String phoneNumber, PhoneNumberType phoneNumberType, User user) {
+        this.phoneNumber = phoneNumber;
+        this.phoneNumberType = phoneNumberType;
+        this.user = user;
+    }
+
     public PhoneNumber(Long id, String phoneNumber, PhoneNumberType phoneNumberType, User user) {
         this.id = id;
         this.phoneNumber = phoneNumber;
