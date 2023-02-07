@@ -5,6 +5,7 @@ import com.yuzarsif.business.dto.model.OrderCustomerDto;
 import com.yuzarsif.business.dto.request.CreateCustomerRequest;
 import com.yuzarsif.business.exception.CustomerNotFoundException;
 import com.yuzarsif.business.model.Customer;
+import com.yuzarsif.business.model.User;
 import com.yuzarsif.business.repository.CustomerRepository;
 import org.springframework.stereotype.Service;
 
@@ -14,10 +15,12 @@ import java.util.Set;
 public class CustomerService {
 
     private final CustomerRepository customerRepository;
+    private final UserService userService;
     private final OrderCustomerDtoConverter converter;
 
-    public CustomerService(CustomerRepository customerRepository, OrderCustomerDtoConverter converter) {
+    public CustomerService(CustomerRepository customerRepository, UserService userService, OrderCustomerDtoConverter converter) {
         this.customerRepository = customerRepository;
+        this.userService = userService;
         this.converter = converter;
     }
 
@@ -41,4 +44,11 @@ public class CustomerService {
                 .orElseThrow(
                         () -> new CustomerNotFoundException("Could not found Customer not found by id : " + id));
     }
+
+    public Customer findByEmail(String email) {
+        User user = userService.findByEmail(email);
+        return findById(user.getId());
+    }
+
+
 }

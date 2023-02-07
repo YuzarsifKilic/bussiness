@@ -23,6 +23,12 @@ public class Order {
 
     public Order() {}
 
+    public Order(Customer customer, Product product, LocalDateTime orderedTime) {
+        this.customer = customer;
+        this.product = product;
+        this.orderedTime = orderedTime;
+    }
+
     public Order(String id, Customer customer, Product product, LocalDateTime orderedTime) {
         this.id = id;
         this.customer = customer;
