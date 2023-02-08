@@ -4,10 +4,9 @@ import com.yuzarsif.business.dto.model.ProductDto;
 import com.yuzarsif.business.dto.request.CreateProductRequest;
 import com.yuzarsif.business.service.ProductService;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/api/product")
@@ -22,5 +21,10 @@ public class ProductController {
     @PostMapping("/save")
     public ResponseEntity<ProductDto> createProduct(@RequestBody CreateProductRequest request) {
         return ResponseEntity.ok(productService.createProduct(request));
+    }
+
+    @GetMapping("/{categoryId}")
+    public ResponseEntity<List<ProductDto>> getProductByCategory(@PathVariable int categoryId) {
+        return ResponseEntity.ok(productService.getByProductId(categoryId));
     }
 }

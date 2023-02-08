@@ -26,4 +26,7 @@ public class CategoryService {
     }
 
 
+    public ProductCategoryDto getById(int id) {
+        return converter.convert(findById(id));
+    }
 }

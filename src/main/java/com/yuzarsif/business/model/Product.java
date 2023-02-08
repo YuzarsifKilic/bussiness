@@ -13,7 +13,7 @@ public class Product {
     private String name;
     private double price;
     private boolean isSold;
-    @OneToOne(cascade = {CascadeType.ALL})
+    @ManyToOne(fetch = FetchType.LAZY, cascade = {CascadeType.ALL})
     @JoinColumn(name = "category_id", referencedColumnName = "id")
     private Category category;
     @ManyToOne(fetch = FetchType.LAZY, cascade = {CascadeType.ALL})

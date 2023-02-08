@@ -8,7 +8,11 @@ import com.yuzarsif.business.model.Category;
 import com.yuzarsif.business.model.Company;
 import com.yuzarsif.business.model.Product;
 import com.yuzarsif.business.repository.ProductRepository;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class ProductService {
@@ -39,5 +43,14 @@ public class ProductService {
                 .findById(id)
                 .orElseThrow(
                         () -> new ProductNotFoundException("Could not find Product by id : " + id));
+    }
+
+    public List<ProductDto> getByProductId(int categoryId) {
+        return productRepository
+                .findAll()
+                .stream()
+                .filter(p -> p.getCategory().getId() == categoryId)
+                .map(converter::convert)
+                .collect(Collectors.toList());
     }
 }

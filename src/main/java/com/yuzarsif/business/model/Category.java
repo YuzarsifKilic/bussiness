@@ -2,6 +2,8 @@ package com.yuzarsif.business.model;
 
 import jakarta.persistence.*;
 
+import java.util.Set;
+
 @Entity
 public class Category {
 
@@ -12,12 +14,12 @@ public class Category {
     @Column(name = "category_type")
     private CategoryType categoryType;
     private String subCategory;
-    @OneToOne(mappedBy = "category")
-    private Product product;
+    @OneToMany(mappedBy = "category", cascade = {CascadeType.ALL}, fetch = FetchType.EAGER)
+    private Set<Product> product;
 
     public Category() {}
 
-    public Category(int id, CategoryType categoryType, String subCategory, Product product) {
+    public Category(int id, CategoryType categoryType, String subCategory, Set<Product> product) {
         this.id = id;
         this.categoryType = categoryType;
         this.subCategory = subCategory;
@@ -36,7 +38,7 @@ public class Category {
         return subCategory;
     }
 
-    public Product getProduct() {
+    public Set<Product> getProduct() {
         return product;
     }
 }
