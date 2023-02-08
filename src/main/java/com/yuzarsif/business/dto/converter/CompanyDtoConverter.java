@@ -1,9 +1,13 @@
 package com.yuzarsif.business.dto.converter;
 
 import com.yuzarsif.business.dto.model.CompanyDto;
+import com.yuzarsif.business.dto.model.ProductDto;
 import com.yuzarsif.business.model.Company;
+import com.yuzarsif.business.model.Product;
 import org.springframework.stereotype.Component;
 
+import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -28,7 +32,7 @@ public class CompanyDtoConverter {
                 from.getWebSite(),
                 addressDtoConverter.convert(from.getAddresses()),
                 phoneNumberDtoConverter.convert(from.getPhoneNumbers()),
-                productDtoConverter.convert(from.getProducts()));
+                new HashSet<>(productDtoConverter.convert(new ArrayList<>(from.getProducts()))));
     }
 
     public List<CompanyDto> convert(List<Company> from) {

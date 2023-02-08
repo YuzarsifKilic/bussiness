@@ -1,5 +1,6 @@
 package com.yuzarsif.business.controller;
 
+import com.yuzarsif.business.dto.model.CustomerDto;
 import com.yuzarsif.business.dto.model.OrderCustomerDto;
 import com.yuzarsif.business.dto.request.CreateCustomerRequest;
 import com.yuzarsif.business.model.Customer;
@@ -26,7 +27,12 @@ public class CustomerController {
     }
 
     @GetMapping("/getall")
-    public User getAll() {
-        return customerService.findByEmail("yuzarsifkilic@gmail.com");
+    public ResponseEntity<List<CustomerDto>> getAll() {
+        return ResponseEntity.ok(customerService.getAll());
+    }
+
+    @GetMapping("/{email}")
+    public ResponseEntity<CustomerDto> getByEmail(@PathVariable String email) {
+        return ResponseEntity.ok(customerService.getByEmail(email));
     }
 }

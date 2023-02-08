@@ -10,6 +10,7 @@ import com.yuzarsif.business.repository.OrderRepository;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Service
 public class OrderService {
@@ -34,5 +35,9 @@ public class OrderService {
         Product product = productService.findById(request.getProductId());
         Order order = new Order(customer, product, LocalDateTime.now());
         return orderDtoConverter.convert(orderRepository.save(order));
+    }
+
+    public List<OrderDto> getAll() {
+        return orderDtoConverter.convert(orderRepository.findAll());
     }
 }

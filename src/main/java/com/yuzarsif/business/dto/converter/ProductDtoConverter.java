@@ -30,7 +30,7 @@ public class ProductDtoConverter {
                 productCompanyDtoConverter.convert(from.getCompany()));
     }
 
-    public Set<ProductDto> convert(Set<Product> from) {
-        return from.stream().map(this::convert).collect(Collectors.toSet());
+    public List<ProductDto> convert(List<Product> from) {
+        return from.stream().map(this::convert).collect(Collectors.toList());
     }
 }

@@ -23,6 +23,11 @@ public class ProductController {
         return ResponseEntity.ok(productService.createProduct(request));
     }
 
+    @GetMapping("/getall")
+    public ResponseEntity<List<ProductDto>> getAll() {
+        return ResponseEntity.ok(productService.getAll());
+    }
+
     @GetMapping("/{categoryId}")
     public ResponseEntity<List<ProductDto>> getProductByCategory(@PathVariable int categoryId) {
         return ResponseEntity.ok(productService.getByProductId(categoryId));

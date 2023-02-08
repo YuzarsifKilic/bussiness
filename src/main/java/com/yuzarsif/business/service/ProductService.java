@@ -53,4 +53,8 @@ public class ProductService {
                 .map(converter::convert)
                 .collect(Collectors.toList());
     }
+
+    public List<ProductDto> getAll() {
+        return converter.convert(productRepository.findAll());
+    }
 }
