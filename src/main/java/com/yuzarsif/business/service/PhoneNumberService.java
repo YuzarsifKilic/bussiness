@@ -3,6 +3,7 @@ package com.yuzarsif.business.service;
 import com.yuzarsif.business.dto.converter.PhoneNumberDtoConverter;
 import com.yuzarsif.business.dto.model.PhoneNumberDto;
 import com.yuzarsif.business.dto.request.CreatePhoneNumberRequest;
+import com.yuzarsif.business.exception.PhoneNumberNotFoundException;
 import com.yuzarsif.business.model.PhoneNumber;
 import com.yuzarsif.business.model.User;
 import com.yuzarsif.business.repository.PhoneNumberRepository;
@@ -36,5 +37,16 @@ public class PhoneNumberService {
         User user = userService.findByEmail(request.getEmail());
         PhoneNumber phoneNumber = new PhoneNumber(request.getPhoneNumber(), request.getPhoneNumberType(), user);
         return converter.convert(phoneNumberRepository.save(phoneNumber));
+    }
+
+    protected PhoneNumber findById(Long id) {
+        return phoneNumberRepository
+                .findById(id)
+                .orElseThrow(
+                        () -> new PhoneNumberNotFoundException("Could not find PhoneNumber by id : " + id));
+    }
+
+    public PhoneNumberDto getById(Long id) {
+        return converter.convert(findById(id));
     }
 }

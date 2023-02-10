@@ -2,7 +2,7 @@ package com.yuzarsif.business.dto.request;
 
 public class CreateAddressRequest {
 
-    private String email;
+    private String id;
     private String apartmentNo;
     private String flat;
     private String street;
@@ -12,8 +12,8 @@ public class CreateAddressRequest {
 
     public CreateAddressRequest() {}
 
-    public CreateAddressRequest(String email, String apartmentNo, String flat, String street, String province, String district, String country) {
-        this.email = email;
+    public CreateAddressRequest(String id, String apartmentNo, String flat, String street, String province, String district, String country) {
+        this.id = id;
         this.apartmentNo = apartmentNo;
         this.flat = flat;
         this.street = street;
@@ -22,8 +22,8 @@ public class CreateAddressRequest {
         this.country = country;
     }
 
-    public String getEmail() {
-        return email;
+    public String getId() {
+        return id;
     }
 
     public String getApartmentNo() {

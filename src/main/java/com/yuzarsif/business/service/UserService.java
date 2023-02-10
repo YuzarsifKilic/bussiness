@@ -20,4 +20,11 @@ public class UserService {
                 .orElseThrow(
                         () -> new UserNotFoundException("Could not find User by email : " + email));
     }
+
+    protected User findById(String id) {
+        return userRepository
+                .findById(id)
+                .orElseThrow(
+                        () -> new UserNotFoundException("Could not find User by id : " + id));
+    }
 }

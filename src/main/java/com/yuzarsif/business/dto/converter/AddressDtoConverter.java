@@ -25,4 +25,8 @@ public class AddressDtoConverter {
     public Set<AddressDto> convert(Set<Address> from) {
         return from.stream().map(this::convert).collect(Collectors.toSet());
     }
+
+    public List<AddressDto> convertToList(List<Address> from) {
+        return from.stream().map(this::convert).collect(Collectors.toList());
+    }
 }
