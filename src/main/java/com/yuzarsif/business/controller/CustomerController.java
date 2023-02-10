@@ -8,7 +8,9 @@ import com.yuzarsif.business.model.User;
 import com.yuzarsif.business.service.CustomerService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
+import java.net.URI;
 import java.util.List;
 
 @RestController
@@ -23,7 +25,14 @@ public class CustomerController {
 
     @PostMapping("/save")
     public ResponseEntity<OrderCustomerDto> save(@RequestBody CreateCustomerRequest request) {
-        return ResponseEntity.ok(customerService.createCustomer(request));
+        OrderCustomerDto savedCustomer = customerService.createCustomer(request);
+
+        URI location = ServletUriComponentsBuilder.fromCurrentRequest()
+                .path("/{id}")
+                .buildAndExpand(savedCustomer.getId())
+                .toUri();
+
+        return ResponseEntity.created(location).build();
     }
 
     @GetMapping("/getall")

@@ -14,7 +14,7 @@ public class UserService {
         this.userRepository = userRepository;
     }
 
-    public User findByEmail(String email) {
+    protected User findByEmail(String email) {
         return userRepository
                 .findByEmail(email)
                 .orElseThrow(
