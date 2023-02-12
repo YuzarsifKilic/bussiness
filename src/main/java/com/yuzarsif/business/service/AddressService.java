@@ -40,12 +40,10 @@ public class AddressService {
                 request.getCountry(),
                 user);
 
-        Address savedAddress = addressRepository.save(address);
-
-        return converter.convert(savedAddress);
+        return converter.convert(addressRepository.save(address));
     }
 
-    public Address findById(Long id) {
+    protected Address findById(Long id) {
         return addressRepository
                 .findById(id)
                 .orElseThrow(
@@ -53,7 +51,17 @@ public class AddressService {
 
     }
 
-    protected AddressDto getById(Long id) {
+
+    public AddressDto getById(Long id) {
         return converter.convert(findById(id));
+    }
+
+    public List<AddressDto> getByUserId(String id) {
+        List<Address> addressList = addressRepository
+                .findAll()
+                .stream()
+                .filter(address -> address.getUser().equals(id))
+                .toList();
+        return converter.convertToList(addressList);
     }
 }

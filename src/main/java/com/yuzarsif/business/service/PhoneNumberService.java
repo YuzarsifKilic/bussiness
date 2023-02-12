@@ -49,4 +49,9 @@ public class PhoneNumberService {
     public PhoneNumberDto getById(Long id) {
         return converter.convert(findById(id));
     }
+
+    public List<PhoneNumberDto> getByUser(String id) {
+        List<PhoneNumber> phoneNumberList = phoneNumberRepository.findAll();
+        return converter.convertToList(phoneNumberList);
+    }
 }

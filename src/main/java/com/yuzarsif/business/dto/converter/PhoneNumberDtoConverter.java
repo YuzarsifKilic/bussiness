@@ -18,4 +18,8 @@ public class PhoneNumberDtoConverter {
     public Set<PhoneNumberDto> convert(Set<PhoneNumber> from) {
         return from.stream().map(this::convert).collect(Collectors.toSet());
     }
+
+    public List<PhoneNumberDto> convertToList(List<PhoneNumber> from) {
+        return from.stream().map(this::convert).collect(Collectors.toList());
+    }
 }

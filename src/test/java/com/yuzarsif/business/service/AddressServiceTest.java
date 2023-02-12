@@ -39,10 +39,11 @@ class AddressServiceTest extends TestSupport {
 
         User user = generateUser();
         Address address = generateAddress();
+        Address withoutId = generateAddressWithoutId();
         AddressDto addressDto = new AddressDto(1L, "-apartment-no", "-flat", "-street", "user-province", "-district", "-country");
 
         Mockito.when(userService.findById(request.getId())).thenReturn(user);
-        Mockito.when(addressRepository.save(address)).thenReturn(address);
+        Mockito.when(addressRepository.save(withoutId)).thenReturn(address);
         Mockito.when(converter.convert(address)).thenReturn(addressDto);
 
         AddressDto result = addressService.createAddress(request);

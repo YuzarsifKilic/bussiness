@@ -4,10 +4,9 @@ import com.yuzarsif.business.dto.model.PhoneNumberDto;
 import com.yuzarsif.business.dto.request.CreatePhoneNumberRequest;
 import com.yuzarsif.business.service.PhoneNumberService;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/api/phone-number")
@@ -22,5 +21,20 @@ public class PhoneNumberController {
     @PostMapping("/save")
     public ResponseEntity<PhoneNumberDto> save(@RequestBody CreatePhoneNumberRequest request) {
         return ResponseEntity.ok(phoneNumberService.createPhoneNumber(request));
+    }
+
+    @GetMapping("/getall")
+    public ResponseEntity<List<PhoneNumberDto>> getAll() {
+        return ResponseEntity.ok(phoneNumberService.getAll());
+    }
+
+    @GetMapping("/user/{id}")
+    public ResponseEntity<List<PhoneNumberDto>> getPhoneNumberByUser(@PathVariable String id) {
+        return ResponseEntity.ok(phoneNumberService.getByUser(id));
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<PhoneNumberDto> getPhoneNumberById(@PathVariable Long id) {
+        return ResponseEntity.ok(phoneNumberService.getById(id));
     }
 }

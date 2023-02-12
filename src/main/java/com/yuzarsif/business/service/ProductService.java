@@ -57,4 +57,11 @@ public class ProductService {
     public List<ProductDto> getAll() {
         return converter.convert(productRepository.findAll());
     }
+
+    public List<ProductDto> getProductsByCompanyId(String id) {
+        return getAll()
+                .stream()
+                .filter(product -> product.getCompany().getId().equals(id))
+                .collect(Collectors.toList());
+    }
 }

@@ -18,9 +18,10 @@ import java.util.stream.Collectors;
 public class TestSupport {
 
     public User generateUser() {
-        User user = new User("123456", "yuzarsifkilic@gmail.com", "yuzarsif", true);
         return user;
     }
+
+    private static final User user = new User("123456", "yuzarsifkilic@gmail.com", "yuzarsif", true);
 
     public Address generateAddress() {
         Address address = new Address(
@@ -31,7 +32,19 @@ public class TestSupport {
                 "user-province",
                 "-district",
                 "-country",
-                generateUser());
+                user);
+        return address;
+    }
+
+    public Address generateAddressWithoutId() {
+        Address address = new Address(
+                "-apartment-no",
+                "-flat",
+                "-street",
+                "user-province",
+                "-district",
+                "-country",
+                user);
         return address;
     }
 
